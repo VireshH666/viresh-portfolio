@@ -15,7 +15,7 @@ const themeOptions: ThemeOption[] = [
     value: "light",
     label: "Light",
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <svg className="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -29,7 +29,7 @@ const themeOptions: ThemeOption[] = [
     value: "dark",
     label: "Dark",
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <svg className="w-4 h-4 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -43,7 +43,7 @@ const themeOptions: ThemeOption[] = [
     value: "system",
     label: "System",
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <svg className="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -94,11 +94,11 @@ export function ThemeToggle({ className, dropdownAlign = "right", isMobile = fal
 
   if (isMobile) {
     return (
-      <div className="w-full flex flex-col gap-2 pt-2 border-t-2 border-[var(--border)]">
+      <div className="w-full flex flex-col gap-2 pt-2 border-t border-[var(--border)]">
         <span className="text-xs font-mono text-[var(--text-muted)] font-bold uppercase tracking-wider">
           Theme Mode
         </span>
-        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-[var(--surface-secondary)] border-2 border-[var(--border)] neo-tag" role="group" aria-label="Theme selector">
+        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-[var(--surface-secondary)] border border-[var(--border)]" role="group" aria-label="Theme selector">
           {themeOptions.map((opt) => {
             const isSelected = activeTheme === opt.value;
             return (
@@ -108,10 +108,10 @@ export function ThemeToggle({ className, dropdownAlign = "right", isMobile = fal
                 onClick={() => setTheme(opt.value)}
                 aria-pressed={isSelected}
                 className={cn(
-                  "flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-mono font-bold transition-all select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]",
+                  "flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-mono font-bold transition-all select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-accent)]",
                   isSelected
-                    ? "bg-[var(--surface-primary)] text-[var(--text-primary)] shadow-sm border border-[var(--border)] neo-tag"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    ? "bg-[var(--primary-accent)] text-white shadow-sm font-black"
+                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-primary)]"
                 )}
               >
                 {opt.icon}
@@ -132,9 +132,9 @@ export function ThemeToggle({ className, dropdownAlign = "right", isMobile = fal
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         aria-label={mounted ? `Current theme: ${currentOption.label}. Click to select theme.` : "Theme mode selector"}
-        className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-secondary)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] flex items-center justify-center"
+        className="p-2 rounded-xl text-[var(--text-primary)] hover:bg-[var(--surface-secondary)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-accent)] flex items-center justify-center cursor-pointer"
       >
-        <span className="text-[var(--text-primary)]">{currentOption.icon}</span>
+        <span className="flex items-center justify-center">{currentOption.icon}</span>
       </button>
 
       {isOpen && (
@@ -142,7 +142,7 @@ export function ThemeToggle({ className, dropdownAlign = "right", isMobile = fal
           role="listbox"
           aria-label="Theme Options"
           className={cn(
-            "absolute mt-2 w-36 rounded-xl bg-[var(--surface-primary)] border-2 border-[var(--border)] p-1.5 neo-card z-50 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-md",
+            "absolute mt-2 w-40 rounded-2xl bg-[var(--surface-primary)] border border-[var(--border)] p-1.5 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-xl",
             dropdownAlign === "right" ? "right-0" : "left-0"
           )}
         >
@@ -159,14 +159,14 @@ export function ThemeToggle({ className, dropdownAlign = "right", isMobile = fal
                   setIsOpen(false);
                 }}
                 className={cn(
-                  "w-full flex items-center justify-between px-3 py-2 text-xs font-mono font-bold rounded-lg transition-colors select-none text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]",
+                  "w-full flex items-center justify-between px-3 py-2 text-xs font-mono font-bold rounded-xl transition-colors select-none text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-accent)]",
                   isSelected
-                    ? "bg-[var(--primary-lavender)] text-[#111111] dark:text-[#ffffff]"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-secondary)]"
+                    ? "bg-[var(--primary-accent)] text-white shadow-sm font-black"
+                    : "text-[var(--text-primary)] hover:bg-[var(--surface-secondary)]"
                 )}
               >
-                <span className="flex items-center gap-2">
-                  <span>{opt.icon}</span>
+                <span className="flex items-center gap-2.5">
+                  {opt.icon}
                   <span>{opt.label}</span>
                 </span>
                 {isSelected && (
