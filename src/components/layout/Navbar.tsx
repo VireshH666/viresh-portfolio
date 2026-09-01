@@ -4,14 +4,13 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { portfolioConfig } from "@/config";
 import { useScrollSpy } from "@/hooks";
-import { buttonVariants, ThemeToggle } from "@/components/ui";
+import { ThemeToggle } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "About", href: "#about", id: "about" },
   { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Skills", href: "#skills", id: "skills" },
-  { label: "Education", href: "#education", id: "education" },
+  { label: "Technical Skills", href: "#skills", id: "skills" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
 
@@ -59,9 +58,9 @@ export function Navbar() {
       {/* Brand / Logo */}
       <Link
         href="#"
-        className="group inline-flex items-center gap-1.5 font-mono text-base font-bold tracking-tight text-[var(--text-primary)] hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg px-2.5 py-1 bg-[var(--surface-primary)] border-2 border-[var(--border)] neo-tag"
+        className="group inline-flex items-center gap-1.5 font-mono text-base font-bold tracking-tight text-[var(--text-primary)] hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-xl px-3 py-1.5 bg-[var(--surface-primary)] border border-[var(--border)] shadow-sm"
       >
-        <span className="text-[#e11d48] dark:text-[var(--accent-pink-light)] font-black text-lg">&gt;</span>
+        <span className="text-[var(--primary-accent)] font-black text-lg">&gt;</span>
         <span>{personalProfile.name}</span>
       </Link>
 
@@ -69,10 +68,10 @@ export function Navbar() {
       <div className="hidden md:flex items-center gap-2 lg:gap-3">
         <ul
           className={cn(
-            "flex items-center gap-1 px-3 py-1 rounded-2xl border-2 border-[var(--border)] transition-all duration-200",
+            "flex items-center gap-1 px-3 py-1 rounded-2xl border border-[var(--border)] transition-all duration-200 shadow-sm",
             isScrolled
-              ? "bg-[var(--surface-primary)] neo-tag"
-              : "bg-[var(--surface-primary)]/80"
+              ? "bg-[var(--surface-primary)]/90 backdrop-blur-md"
+              : "bg-[var(--surface-primary)]/60 backdrop-blur-sm"
           )}
           role="list"
         >
@@ -85,8 +84,8 @@ export function Navbar() {
                   className={cn(
                     "px-3.5 py-1.5 text-xs lg:text-sm font-mono font-bold rounded-xl transition-all select-none block",
                     isActive
-                      ? "bg-[var(--primary-lavender)] text-[#111111] dark:text-[#ffffff] border border-[var(--border)]"
-                      : "text-[var(--text-primary)] hover:bg-[var(--surface-secondary)]"
+                      ? "bg-[var(--primary-accent)] text-white shadow-sm"
+                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-secondary)]"
                   )}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -97,10 +96,10 @@ export function Navbar() {
           })}
         </ul>
 
-        {/* Social Icons, Theme Toggle & Resume Action */}
+        {/* Social Icons & Theme Toggle */}
         <div className="flex items-center gap-2 pl-2">
           {/* Theme Selector */}
-          <div className="border-2 border-[var(--border)] rounded-xl bg-[var(--surface-primary)] neo-tag">
+          <div className="border border-[var(--border)] rounded-xl bg-[var(--surface-primary)] shadow-sm">
             <ThemeToggle />
           </div>
 
@@ -110,7 +109,7 @@ export function Navbar() {
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-xl text-[var(--text-primary)] bg-[var(--surface-primary)] border-2 border-[var(--border)] neo-tag hover:bg-[#0284c7] hover:text-white dark:hover:bg-[var(--secondary-sky)] dark:hover:text-[#090a10] transition-all hover:scale-105"
+              className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--surface-primary)] border border-[var(--border)] shadow-sm hover:border-[var(--primary-accent)] transition-all hover:scale-105"
               aria-label="GitHub Profile"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -125,27 +124,12 @@ export function Navbar() {
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-xl text-[var(--text-primary)] bg-[var(--surface-primary)] border-2 border-[var(--border)] neo-tag hover:bg-[#e11d48] hover:text-white dark:hover:bg-[var(--accent-pink)] dark:hover:text-[#090a10] transition-all hover:scale-105"
+              className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[#0a66c2] bg-[var(--surface-primary)] border border-[var(--border)] shadow-sm hover:border-blue-500 transition-all hover:scale-105"
               aria-label="LinkedIn Profile"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28z" />
               </svg>
-            </a>
-          )}
-
-          {/* Resume Action */}
-          {personalProfile.resumeUrl && (
-            <a
-              href={personalProfile.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                buttonVariants({ variant: "sky", size: "sm" }),
-                "text-xs font-mono font-bold"
-              )}
-            >
-              Resume ↗
             </a>
           )}
         </div>
@@ -153,7 +137,7 @@ export function Navbar() {
 
       {/* Mobile Actions: Theme Toggle + Menu Button */}
       <div className="flex items-center gap-2 md:hidden">
-        <div className="border-2 border-[var(--border)] rounded-xl bg-[var(--surface-primary)] neo-tag">
+        <div className="border border-[var(--border)] rounded-xl bg-[var(--surface-primary)] shadow-sm">
           <ThemeToggle />
         </div>
         <button
@@ -162,15 +146,15 @@ export function Navbar() {
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-          className="p-2 rounded-xl text-[var(--text-primary)] bg-[var(--surface-primary)] border-2 border-[var(--border)] neo-tag focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          className="p-2 rounded-xl text-[var(--text-primary)] bg-[var(--surface-primary)] border border-[var(--border)] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
         >
           {isOpen ? (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 6h16M4 12h16M4 18h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           )}
         </button>
@@ -180,7 +164,7 @@ export function Navbar() {
       {isOpen && (
         <div
           id="mobile-navigation"
-          className="fixed inset-x-0 top-16 bottom-0 z-40 bg-[var(--background)]/98 backdrop-blur-xl md:hidden flex flex-col p-6 border-t-2 border-[var(--border)] overflow-y-auto"
+          className="fixed inset-x-0 top-16 bottom-0 z-40 bg-[var(--background)]/98 backdrop-blur-xl md:hidden flex flex-col p-6 border-t border-[var(--border)] overflow-y-auto"
         >
           <ul className="flex flex-col space-y-2.5 py-4" role="list">
             {navItems.map((item) => {
@@ -191,39 +175,24 @@ export function Navbar() {
                     href={item.href}
                     onClick={closeMenu}
                     className={cn(
-                      "flex items-center justify-between px-4 py-3 rounded-2xl text-base font-mono font-bold transition-all border-2 border-[var(--border)]",
+                      "flex items-center justify-between px-4 py-3 rounded-2xl text-base font-mono font-bold transition-all border",
                       isActive
-                        ? "bg-[var(--primary-lavender)] text-[#111111] dark:text-[#ffffff] neo-tag"
-                        : "bg-[var(--surface-primary)] text-[var(--text-primary)] hover:bg-[var(--surface-secondary)]"
+                        ? "bg-[var(--primary-accent)] text-white border-[var(--primary-accent)] shadow-md"
+                        : "bg-[var(--surface-primary)] text-[var(--text-primary)] border-[var(--border)] hover:bg-[var(--surface-secondary)]"
                     )}
                     aria-current={isActive ? "page" : undefined}
                   >
                     <span>{item.label}</span>
-                    <span className="text-xs font-bold text-[#e11d48] dark:text-[var(--accent-pink)]">#{item.id}</span>
+                    <span className="text-xs opacity-75 font-mono">#{item.id}</span>
                   </a>
                 </li>
               );
             })}
           </ul>
 
-          <div className="mt-auto pt-6 border-t-2 border-[var(--border)] flex flex-col gap-4">
+          <div className="mt-auto pt-6 border-t border-[var(--border)] flex flex-col gap-4">
             {/* Mobile Theme Selector */}
             <ThemeToggle isMobile />
-
-            {personalProfile.resumeUrl && (
-              <a
-                href={personalProfile.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMenu}
-                className={cn(
-                  buttonVariants({ variant: "sky", size: "lg" }),
-                  "w-full text-center font-mono font-bold text-sm"
-                )}
-              >
-                Download Resume ↗
-              </a>
-            )}
 
             <div className="flex items-center justify-center gap-4 pt-2">
               {socialLinks.github && (
@@ -231,7 +200,7 @@ export function Navbar() {
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-2xl bg-[var(--surface-primary)] text-[var(--text-primary)] border-2 border-[var(--border)] neo-tag hover:bg-[#0284c7] hover:text-white dark:hover:bg-[var(--secondary-sky)] dark:hover:text-[#090a10]"
+                  className="p-3 rounded-2xl bg-[var(--surface-primary)] text-[var(--text-primary)] border border-[var(--border)] shadow-sm hover:border-[var(--primary-accent)]"
                   aria-label="GitHub Profile"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -244,7 +213,7 @@ export function Navbar() {
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-2xl bg-[var(--surface-primary)] text-[var(--text-primary)] border-2 border-[var(--border)] neo-tag hover:bg-[#e11d48] hover:text-white dark:hover:bg-[var(--accent-pink)] dark:hover:text-[#090a10]"
+                  className="p-3 rounded-2xl bg-[var(--surface-primary)] text-[#0a66c2] border border-[var(--border)] shadow-sm hover:border-blue-500"
                   aria-label="LinkedIn Profile"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

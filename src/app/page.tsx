@@ -3,7 +3,6 @@ import {
   AboutSection,
   ProjectsSection,
   SkillsSection,
-  EducationSection,
   ContactSection,
 } from "@/components/sections";
 
@@ -22,10 +21,7 @@ export default function Home() {
       {/* 4. Skills & Technical Expertise */}
       <SkillsSection />
 
-      {/* 5. Education, Certifications & Activities */}
-      <EducationSection />
-
-      {/* 6. Contact & Opportunities */}
+      {/* 5. Contact & Opportunities */}
       <ContactSection />
     </main>
   );

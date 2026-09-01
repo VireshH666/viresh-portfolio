@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "coral" | "sky" | "lavender";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "default";
   size?: "sm" | "md" | "lg" | "icon";
   isLoading?: boolean;
 }
@@ -13,26 +13,22 @@ export function buttonVariants({
   size = "md",
   className,
 }: {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "coral" | "sky" | "lavender";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "default";
   size?: "sm" | "md" | "lg" | "icon";
   className?: string;
 } = {}) {
   const baseStyles =
-    "inline-flex items-center justify-center font-mono font-bold transition-all duration-150 select-none rounded-xl cursor-pointer disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]";
+    "inline-flex items-center justify-center font-mono font-bold transition-all duration-200 select-none rounded-xl cursor-pointer disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]";
 
   const variantStyles: Record<string, string> = {
     primary:
-      "bg-[var(--primary-lavender)] text-[#111111] dark:text-[#ffffff] border-2 border-[var(--border)] neo-button hover:opacity-90",
-    coral:
-      "bg-[#e11d48] dark:bg-[#fb7185] text-white dark:text-[#090a10] border-2 border-[var(--border)] neo-button hover:opacity-95",
-    sky:
-      "bg-[#0284c7] dark:bg-[#38bdf8] text-white dark:text-[#090a10] border-2 border-[var(--border)] neo-button hover:opacity-95",
-    lavender:
-      "bg-[var(--primary-lavender)] text-[#111111] dark:text-[#ffffff] border-2 border-[var(--border)] neo-button hover:opacity-90",
+      "bg-[var(--primary-accent)] text-white hover:bg-[var(--accent-hover)] shadow-md shadow-indigo-500/20 hover:scale-105 active:scale-95",
+    default:
+      "bg-[var(--primary-accent)] text-white hover:bg-[var(--accent-hover)] shadow-md shadow-indigo-500/20 hover:scale-105 active:scale-95",
     secondary:
-      "bg-[var(--surface-primary)] text-[var(--text-primary)] border-2 border-[var(--border)] neo-button hover:bg-[var(--surface-secondary)]",
+      "bg-[var(--surface-secondary)] text-[var(--text-primary)] border border-[var(--border)] hover:bg-[var(--surface-tertiary)] hover:border-[var(--border-hover)] hover:scale-105 active:scale-95",
     outline:
-      "bg-transparent text-[var(--text-primary)] border-2 border-[var(--border)] neo-button hover:bg-[var(--surface-secondary)]",
+      "bg-transparent text-[var(--text-primary)] border border-[var(--border)] hover:bg-[var(--surface-secondary)] hover:border-[var(--primary-accent)] active:scale-95",
     ghost:
       "bg-transparent text-[var(--text-primary)] hover:bg-[var(--surface-secondary)]",
   };

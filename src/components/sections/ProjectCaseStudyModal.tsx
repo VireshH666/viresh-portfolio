@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import type { Project } from "@/types/portfolio.types";
-import { Badge, buttonVariants } from "@/components/ui";
+import { buttonVariants } from "@/components/ui";
 
 export interface ProjectCaseStudyModalProps {
   project: Project | null;
@@ -39,7 +39,7 @@ export function ProjectCaseStudyModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-project-title"
@@ -47,36 +47,39 @@ export function ProjectCaseStudyModal({
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="relative w-full max-w-3xl max-h-[90vh] bg-[var(--surface-primary)] border-2 border-[var(--border)] rounded-3xl p-6 sm:p-8 neo-card overflow-y-auto my-auto text-left">
+      <div className="relative w-full max-w-3xl max-h-[90vh] bg-[var(--surface-primary)] border border-[var(--border)] rounded-3xl p-6 sm:p-8 card-modern overflow-y-auto my-auto text-left shadow-2xl">
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close case study dialog"
-          className="absolute top-5 right-5 p-2 rounded-xl text-[var(--text-primary)] bg-[var(--surface-secondary)] border-2 border-[var(--border)] neo-tag hover:bg-[#e11d48] hover:text-white dark:hover:bg-[var(--accent-pink)] dark:hover:text-[#090a10] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          aria-label="Close project details dialog"
+          className="absolute top-5 right-5 p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--surface-secondary)] border border-[var(--border)] hover:border-[var(--primary-accent)] transition-all cursor-pointer"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        {/* 1. Header & Badges */}
+        {/* Header Badges */}
         <div className="flex flex-wrap items-center gap-2 mb-3">
-          <Badge variant="lavender" size="sm">
-            {project.subtitle || project.category}
-          </Badge>
-          <Badge
-            variant={project.status === "completed" ? "default" : "coral"}
-            size="sm"
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-indigo-500/15 text-indigo-400 border border-indigo-500/30">
+            {project.category}
+          </span>
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-mono font-bold border ${
+              project.status === "completed"
+                ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+                : "bg-purple-500/15 text-purple-400 border-purple-500/30"
+            }`}
           >
             {project.status === "completed" ? "Completed" : "Ongoing Project"}
-          </Badge>
+          </span>
         </div>
 
         {/* Title */}
         <h2
           id="modal-project-title"
-          className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-3"
+          className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-3 pr-10"
         >
           {project.title}
         </h2>
@@ -86,22 +89,34 @@ export function ProjectCaseStudyModal({
           {project.description}
         </p>
 
-        <div className="space-y-6 border-t-2 border-[var(--border)] pt-6 text-sm">
-          {/* 2. Workflow Pipeline */}
+        <div className="space-y-6 border-t border-[var(--border-subtle)] pt-6 text-sm">
+          {/* Objective */}
+          {project.goal && (
+            <div>
+              <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-extrabold mb-2">
+                Objective
+              </div>
+              <p className="p-4 rounded-2xl bg-[var(--surface-secondary)] border border-[var(--border)] text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed font-medium">
+                {project.goal}
+              </p>
+            </div>
+          )}
+
+          {/* Workflow */}
           {workflowSteps.length > 0 && (
             <div>
               <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-extrabold mb-2.5">
-                Workflow Pipeline
+                Workflow
               </div>
-              <div className="p-4 rounded-2xl bg-[var(--surface-secondary)] border-2 border-[var(--border)] neo-tag">
+              <div className="p-4 rounded-2xl bg-[var(--surface-secondary)] border border-[var(--border)]">
                 <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-[var(--text-secondary)]">
                   {workflowSteps.map((step, idx) => (
                     <React.Fragment key={idx}>
-                      <span className="px-2.5 py-1 rounded-lg bg-[var(--surface-primary)] border-2 border-[var(--border)] text-[var(--text-primary)] font-bold">
+                      <span className="px-3 py-1 rounded-xl bg-[var(--surface-primary)] border border-[var(--border)] text-[var(--text-primary)] font-bold">
                         {step}
                       </span>
                       {idx < workflowSteps.length - 1 && (
-                        <span className="text-[#e11d48] dark:text-[var(--accent-pink)] font-black text-xs">→</span>
+                        <span className="text-[var(--primary-accent)] font-black text-xs">→</span>
                       )}
                     </React.Fragment>
                   ))}
@@ -110,53 +125,24 @@ export function ProjectCaseStudyModal({
             </div>
           )}
 
-          {/* 3. Problem & Solution */}
-          {(project.problem || project.solution) && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {project.problem && (
-                <div className="p-4 rounded-2xl bg-[var(--surface-secondary)] border-2 border-[var(--border)] neo-tag">
-                  <div className="text-xs font-mono text-[var(--text-blue)] uppercase tracking-wider mb-1.5 font-extrabold">
-                    Problem
-                  </div>
-                  <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed font-medium">
-                    {project.problem}
-                  </p>
-                </div>
-              )}
-              {project.solution && (
-                <div className="p-4 rounded-2xl bg-[var(--surface-secondary)] border-2 border-[var(--border)] neo-tag">
-                  <div className="text-xs font-mono text-[var(--text-lavender)] uppercase tracking-wider mb-1.5 font-extrabold">
-                    Solution
-                  </div>
-                  <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed font-medium">
-                    {project.solution}
-                  </p>
-                </div>
-              )}
+          {/* Technologies */}
+          <div>
+            <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-extrabold mb-2.5">
+              Technologies
             </div>
-          )}
-
-          {/* 4. Key Capabilities */}
-          {project.features && project.features.length > 0 && (
-            <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-extrabold mb-2.5">
-                Key Capabilities
-              </div>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2" role="list">
-                {project.features.map((feature, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-center gap-2 text-xs sm:text-sm text-[var(--text-primary)] p-2.5 rounded-xl bg-[var(--surface-secondary)] border border-[var(--border)] font-medium"
-                  >
-                    <span className="text-[#e11d48] dark:text-[var(--accent-pink)] font-bold text-sm">✓</span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-xl text-xs font-mono font-bold bg-[var(--surface-secondary)] text-[var(--text-primary)] border border-[var(--border)]"
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
-          )}
+          </div>
 
-          {/* 5. Technical Decisions */}
+          {/* Technical Approach */}
           {project.technicalDecisions && project.technicalDecisions.length > 0 && (
             <div>
               <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-extrabold mb-2.5">
@@ -166,7 +152,7 @@ export function ProjectCaseStudyModal({
                 {project.technicalDecisions.map((decision, dIdx) => (
                   <div
                     key={dIdx}
-                    className="p-3 rounded-xl bg-[var(--surface-secondary)] border border-[var(--border)] text-xs text-[var(--text-primary)] leading-relaxed font-medium"
+                    className="p-3.5 rounded-2xl bg-[var(--surface-secondary)] border border-[var(--border)] text-xs text-[var(--text-primary)] leading-relaxed font-medium"
                   >
                     • {decision}
                   </div>
@@ -175,13 +161,13 @@ export function ProjectCaseStudyModal({
             </div>
           )}
 
-          {/* 6. Results */}
+          {/* Results (Only when exists) */}
           {project.results && project.results.length > 0 && (
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-mint)] font-extrabold mb-2">
+              <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-extrabold mb-2">
                 Demonstrated Results
               </div>
-              <div className="p-4 rounded-2xl bg-[var(--success-muted)] border-2 border-[var(--border)] neo-tag text-[var(--text-mint)] text-xs sm:text-sm font-mono font-black">
+              <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-mono font-bold">
                 {project.results.map((res, idx) => (
                   <p key={idx}>{res}</p>
                 ))}
@@ -189,42 +175,25 @@ export function ProjectCaseStudyModal({
             </div>
           )}
 
-          {/* 7. Privacy Framing Note (for WhatsAppForBusiness) */}
-          {project.id === "whatsapp-for-business" && (
-            <div className="p-3.5 rounded-2xl bg-[var(--surface-secondary)] border border-[var(--border)] text-xs text-[var(--text-muted)] font-mono">
-              <span className="text-[var(--text-primary)] font-bold block mb-0.5">
-                Public Web Search Architecture:
+          {/* Privacy Note (Only for WhatsAppForBusiness) */}
+          {project.privacyNote && (
+            <div className="p-4 rounded-2xl bg-[var(--surface-secondary)] border border-[var(--border)] text-xs text-[var(--text-muted)] font-mono">
+              <span className="text-[var(--text-primary)] font-bold block mb-1">
+                Privacy Architecture:
               </span>
-              Strictly queries and structures publicly available business information via public web search endpoints.
+              {project.privacyNote}
             </div>
           )}
-
-          {/* 8. Technologies Badges */}
-          <div>
-            <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-primary)] font-extrabold mb-2.5">
-              Technologies Used
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 rounded-lg text-xs font-mono font-bold bg-[var(--surface-secondary)] text-[var(--text-primary)] border border-[var(--border)] neo-tag"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Footer Close Button */}
-        <div className="mt-8 pt-4 border-t-2 border-[var(--border)] flex justify-end">
+        <div className="mt-8 pt-4 border-t border-[var(--border-subtle)] flex justify-end">
           <button
             type="button"
             onClick={onClose}
             className={buttonVariants({ variant: "secondary", size: "md" })}
           >
-            Close Case Study
+            Close Details
           </button>
         </div>
       </div>

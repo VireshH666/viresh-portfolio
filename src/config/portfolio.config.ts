@@ -1,135 +1,90 @@
 import type { PortfolioData } from "@/types/portfolio.types";
 
 /**
- * Single source of truth for portfolio data.
- * Contains only verified data explicitly provided by the user.
+ * Centralized portfolio data.
+ * Contains only verified information strictly following the engineering design system.
  */
 export const portfolioConfig = {
   personalProfile: {
     name: "Viresh Hunasagi",
     title: "Data Science Engineering Student",
-    tagline: "Building with Machine Learning, Deep Learning & AI.",
+    tagline: "Building machine learning and AI-powered applications.",
     shortBio:
-      "Data Science Engineering student interested in Machine Learning, AI, Computer Vision, and Data Science. Currently building practical projects involving ML models, AI-powered applications, and signal processing.",
-    longBio:
-      "Data Science Engineering student interested in Machine Learning, AI, Computer Vision, and Data Science. Currently building practical projects involving ML models, AI-powered applications, and signal processing.",
-    location: "Vijaypur, India",
+      "Data Science Engineering student with hands-on experience in developing machine learning models and AI-powered applications.",
+    aboutText:
+      "I'm a Data Science Engineering student interested in building practical solutions using data, machine learning and AI. I enjoy turning ideas into working applications and exploring how intelligent systems can solve real-world problems. My project experience spans crop nutrient deficiency detection, AI-assisted business contact discovery, and ongoing research in acoustic signal processing.",
     email: "vireshhunasagi134@gmail.com",
-    phone: "+91-9036964686",
-    profileImage: "",
-    resumeUrl: "/resume/Viresh_Hunasagi_Resume.pdf",
-    availability: "Open to Internship Opportunities",
   },
   socialLinks: {
     github: "https://github.com/VireshH666",
     linkedin: "https://www.linkedin.com/in/viresh-hunasagi-021998314",
-    twitter: "",
-    instagram: "",
     email: "mailto:vireshhunasagi134@gmail.com",
-    website: "",
   },
   projects: [
     {
       id: "whatsapp-for-business",
-      title: "WhatsAppForBusiness",
-      subtitle: "Business Intelligence & Contact Discovery",
-      shortDescription:
-        "Public-web contact discovery using SerpAPI, AI/LLM, Next.js, and Docker.",
-      description:
-        "A business contact discovery platform that finds publicly available person and business information using name, email, phone number, and location-based searches.",
-      featured: true,
+      projectNumber: "01",
+      title: "WhatsAppForBusiness – Business Intelligence & Contact Discovery",
       status: "completed",
-      role: "",
+      category: "Business Intelligence / Contact Discovery / AI",
+      shortDescription:
+        "Business contact discovery platform for finding publicly available person and business information through name, email, phone, and location-based searches.",
+      description:
+        "Developed an automated business intelligence platform for finding publicly available person and business information across search engines using name, email, phone, and geolocation parameters.",
+      workflowSteps: ["SEARCH", "AI", "DATA", "CONTACT"],
       technologies: [
         "Next.js",
         "React",
         "TypeScript",
         "Node.js",
         "SerpAPI",
-        "LLM / AI",
-        "Docker",
+        "LLM/AI",
+        "MongoDB",
+        "Geolocation",
         "PhonePe API",
       ],
-      category: "AI & Full Stack",
-      image: "",
-      screenshots: [],
-      githubUrl: "",
-      liveUrl: "",
-      problem:
-        "Manual discovery and aggregation of publicly available business contact records across web search endpoints is time-consuming and error-prone.",
-      goal:
-        "Provide a streamlined, AI-assisted pipeline to search, extract, validate, and manage publicly available person and business contact information.",
+      goal: "Provide an automated, AI-assisted pipeline to discover, extract, validate, and manage publicly available person and business contact information.",
       solution:
-        "Built a platform connecting SerpAPI search discovery with LLM structured parsing, automated deduplication, MongoDB persistence, and PhonePe payment integration.",
-      features: [
-        "Person & business discovery across public web sources",
-        "Name, email, phone & location-based queries",
-        "Nearby business discovery via geolocation",
-        "AI / LLM-powered structured entity extraction",
-        "Automated validation and duplicate removal",
-        "Contact management interface and PhonePe payments",
-      ],
-      architecture: "Search → Web → AI → Validate → Database → Contact",
+        "Connected SerpAPI search discovery with LLM structured parsing, automated deduplication, MongoDB persistence, and PhonePe API integration.",
+      architecture: "SEARCH → AI → DATA → CONTACT",
       technicalDecisions: [
-        "Next.js & React: Built responsive, type-safe search and contact dashboards.",
-        "Node.js & SerpAPI: Handled asynchronous web queries across public endpoints.",
-        "LLM Entity Parsing: Converted unstructured web page text into clean JSON contact schemas.",
-        "Deduplication Engine: Sanitized and validated phone/email patterns.",
-        "Docker: Containerized application environments for streamlined local and cloud setups.",
+        "Built responsive search interfaces with Next.js, React, and TypeScript.",
+        "Queried public search endpoints asynchronously using Node.js and SerpAPI.",
+        "Parsed unstructured web text into structured contact schemas using LLMs.",
+        "Persisted normalized contact records and geolocation data in MongoDB.",
       ],
-      challenges: [
-        "Normalizing disparate, unstructured web data into reliable entity models.",
-      ],
-      results: [
-        "Multi-parameter search and automated discovery pipeline on public web data.",
-      ],
+      privacyNote:
+        "Uses publicly available information discovered through public web/search sources.",
     },
     {
       id: "crop-nutrient-deficiency-detection",
+      projectNumber: "02",
       title: "Detection of Nutrient Deficiency in Crop Leaves",
-      subtitle: "Computer Vision · Machine Learning",
-      shortDescription:
-        "Rice-leaf nutrient deficiency detection using CNN, Random Forest, OpenCV, and MobileNetV2.",
-      description:
-        "AI-based computer vision system to identify Nitrogen (N), Phosphorus (P), and Potassium (K) deficiencies from rice leaf imagery.",
-      featured: false,
       status: "completed",
-      role: "",
+      category: "Computer Vision / Machine Learning",
+      shortDescription:
+        "AI-based system for detecting Nitrogen, Phosphorus, and Potassium deficiencies from rice leaf images.",
+      description:
+        "Developed an end-to-end computer vision and machine learning system to diagnose agricultural nutrient deficiencies (Nitrogen, Phosphorus, Potassium) from rice leaf photos.",
+      workflowSteps: ["LEAF", "IMAGE", "MODEL", "PREDICTION"],
       technologies: [
         "Python",
         "CNN",
         "MobileNetV2",
         "Random Forest",
         "OpenCV",
-        "Scikit-learn",
         "TensorFlow",
+        "Keras",
+        "Scikit-learn",
       ],
-      category: "Computer Vision & ML",
-      image: "",
-      screenshots: [],
-      githubUrl: "",
-      liveUrl: "",
-      problem:
-        "Visual diagnosis of crop nutrient deficiencies is subjective and manual inspection delays agricultural corrective actions.",
-      goal:
-        "Accurately classify Nitrogen, Phosphorus, and Potassium deficiencies from rice leaf images.",
+      goal: "Accurately identify and classify Nitrogen (N), Phosphorus (P), and Potassium (K) deficiencies from agricultural rice leaf imagery.",
       solution:
-        "Implemented an end-to-end vision pipeline combining OpenCV segmentation, RGB/GLCM feature extraction, and CNN (MobileNetV2) & Random Forest classification.",
-      features: [
-        "Image preprocessing and background suppression",
-        "Leaf region segmentation",
-        "RGB color statistics & GLCM texture descriptor extraction",
-        "MobileNetV2 CNN & Random Forest classification",
-      ],
-      architecture:
-        "Rice Leaf → Preprocessing → Segmentation → Features → Classification → Prediction",
+        "Constructed an automated computer vision pipeline integrating OpenCV segmentation, color moment and GLCM texture extraction, with MobileNetV2 CNN and Random Forest classification.",
+      architecture: "LEAF → IMAGE → MODEL → PREDICTION",
       technicalDecisions: [
-        "OpenCV: Color-space transformations and leaf mask segmentation.",
-        "Feature Engineering: Color moments and GLCM texture matrix extraction.",
-        "Model Comparison: Trained and benchmarked MobileNetV2 CNN vs Random Forest ensemble.",
-      ],
-      challenges: [
-        "Handling varied illumination and background noise in agricultural leaf photos.",
+        "Segmented leaf regions and suppressed background noise using OpenCV.",
+        "Extracted color statistics and GLCM texture descriptors for feature analysis.",
+        "Trained and evaluated MobileNetV2 CNN alongside Random Forest classifiers.",
       ],
       results: [
         "Up to 93% accuracy in detecting Nitrogen, Phosphorus, and Potassium deficiencies.",
@@ -137,15 +92,15 @@ export const portfolioConfig = {
     },
     {
       id: "acoustic-signal-processing",
-      title: "Acoustic Signal Processing",
-      subtitle: "Signal Processing · Audio ML",
-      shortDescription:
-        "Exploring MFCC, sound event detection, and 3D localization.",
-      description:
-        "Ongoing exploratory project for sound event classification and spatial audio localization using signal processing techniques.",
-      featured: false,
+      projectNumber: "03",
+      title: "Acoustic Signal Processing for Sound Event Detection and 3D Localization",
       status: "in-progress",
-      role: "",
+      category: "Signal Processing / Machine Learning / Audio",
+      shortDescription:
+        "Exploring sound event detection and spatial audio techniques for 3D sound localization.",
+      description:
+        "Ongoing exploratory research project investigating acoustic signal processing, MFCC extraction, and spatial audio representations for 3D sound event localization.",
+      workflowSteps: ["WAVEFORM", "MFCC", "SOUND", "3D"],
       technologies: [
         "Python",
         "Librosa",
@@ -153,44 +108,37 @@ export const portfolioConfig = {
         "Signal Processing",
         "Machine Learning",
       ],
-      category: "Signal Processing & Audio",
-      image: "",
-      screenshots: [],
-      githubUrl: "",
-      liveUrl: "",
-      problem:
-        "Identifying and estimating the 3D direction-of-arrival for sound events from multi-channel acoustic signals.",
-      goal:
-        "Design a pipeline for acoustic event detection and 3D spatial localization.",
+      goal: "Explore acoustic feature representations for multi-channel sound event detection and 3D spatial localization.",
       solution:
-        "Developing a signal processing architecture exploring Librosa feature extraction (MFCC) and spatial audio modeling.",
-      features: [
-        "Acoustic signal pipeline design",
-        "MFCC and spectral feature extraction with Librosa",
-        "Spatial audio modeling & 3D localization exploration",
-      ],
-      architecture:
-        "Audio → MFCC → Spatial Audio → ML → Sound Detection → 3D Localization",
+        "Developing a signal processing architecture leveraging Librosa for spectral and MFCC feature extraction alongside spatial audio modeling.",
+      architecture: "WAVEFORM → MFCC → SOUND → 3D",
       technicalDecisions: [
-        "Librosa: Extracted Mel-Frequency Cepstral Coefficients from multi-channel audio.",
-        "Spatial Modeling: Exploring acoustic feature representations for 3D positioning.",
+        "Extracted Mel-Frequency Cepstral Coefficients (MFCC) and spectral features using Librosa.",
+        "Exploring spatial audio feature representations for 3D direction-of-arrival modeling.",
       ],
-      challenges: [
-        "Minimizing acoustic reverberation and ambient noise during spatial feature extraction.",
-      ],
-      results: [],
     },
   ],
   skills: [
-    // Machine Learning
-    { name: "TensorFlow", category: "Machine Learning" },
-    { name: "Keras", category: "Machine Learning" },
-    { name: "CNN", category: "Machine Learning" },
-    { name: "LSTM", category: "Machine Learning" },
-    { name: "Random Forest", category: "Machine Learning" },
-    { name: "SVM", category: "Machine Learning" },
-    { name: "Scikit-learn", category: "Machine Learning" },
-    { name: "LLM / AI", category: "Machine Learning" },
+    // Machine Learning & Deep Learning
+    { name: "TensorFlow", category: "Machine Learning & Deep Learning" },
+    { name: "Keras", category: "Machine Learning & Deep Learning" },
+    { name: "CNN", category: "Machine Learning & Deep Learning" },
+    { name: "Random Forest", category: "Machine Learning & Deep Learning" },
+    { name: "SVM", category: "Machine Learning & Deep Learning" },
+    { name: "Scikit-learn", category: "Machine Learning & Deep Learning" },
+    { name: "LLM / AI", category: "Machine Learning & Deep Learning" },
+
+    // Programming
+    { name: "Python", category: "Programming" },
+    { name: "C", category: "Programming" },
+    { name: "TypeScript", category: "Programming" },
+
+    // Data & Visualization
+    { name: "Pandas", category: "Data & Visualization" },
+    { name: "NumPy", category: "Data & Visualization" },
+    { name: "Matplotlib", category: "Data & Visualization" },
+    { name: "Tableau", category: "Data & Visualization" },
+    { name: "Power BI", category: "Data & Visualization" },
 
     // Computer Vision & Audio
     { name: "OpenCV", category: "Computer Vision & Audio" },
@@ -199,99 +147,26 @@ export const portfolioConfig = {
     { name: "Feature Engineering", category: "Computer Vision & Audio" },
     { name: "MFCC", category: "Computer Vision & Audio" },
 
-    // Development
-    { name: "Python", category: "Development" },
-    { name: "C", category: "Development" },
-    { name: "TypeScript", category: "Development" },
-    { name: "Next.js", category: "Development" },
-    { name: "React", category: "Development" },
-    { name: "Node.js", category: "Development" },
-    { name: "Docker", category: "Development" },
+    // Web & Backend
+    { name: "Next.js", category: "Web & Backend" },
+    { name: "React", category: "Web & Backend" },
+    { name: "Node.js", category: "Web & Backend" },
 
-    // Data & Tools
-    { name: "Pandas", category: "Data & Tools" },
-    { name: "NumPy", category: "Data & Tools" },
-    { name: "Matplotlib", category: "Data & Tools" },
-    { name: "Tableau", category: "Data & Tools" },
-    { name: "Power BI", category: "Data & Tools" },
-    { name: "Git", category: "Data & Tools" },
-    { name: "GitHub", category: "Data & Tools" },
-    { name: "SerpAPI", category: "Data & Tools" },
-    { name: "PhonePe API", category: "Data & Tools" },
+    // Tools & Databases
+    { name: "MongoDB", category: "Tools & Databases" },
+    { name: "Git", category: "Tools & Databases" },
+    { name: "GitHub", category: "Tools & Databases" },
+    { name: "SerpAPI", category: "Tools & Databases" },
+    { name: "Geolocation", category: "Tools & Databases" },
+    { name: "PhonePe API", category: "Tools & Databases" },
 
-    // Databases
-    { name: "MongoDB", category: "Databases" },
-    { name: "Database", category: "Databases" },
-    { name: "Geolocation", category: "Databases" },
-
-    // Fundamentals
-    { name: "Data Structures", category: "Fundamentals" },
-    { name: "OOP", category: "Fundamentals" },
-    { name: "DBMS", category: "Fundamentals" },
-    { name: "Operating Systems", category: "Fundamentals" },
-    { name: "Computer Networks", category: "Fundamentals" },
+    // Computer Science Fundamentals
+    { name: "Data Structures", category: "Computer Science Fundamentals" },
+    { name: "OOP", category: "Computer Science Fundamentals" },
+    { name: "DBMS", category: "Computer Science Fundamentals" },
+    { name: "Operating Systems", category: "Computer Science Fundamentals" },
+    { name: "Computer Networks", category: "Computer Science Fundamentals" },
   ],
-  experience: [],
-  education: [
-    {
-      id: "btech-cse-ds",
-      degree: "B.E. CSE (Data Science)",
-      institution:
-        "BLDEA's V P Dr PG Halakatti College of Engineering & Technology",
-      location: "Vijayapur, India",
-      startDate: "2023",
-      endDate: "2027 Expected",
-      score: "CGPA: 8.3",
-      description: "Specializing in Computer Science & Engineering (Data Science).",
-    },
-    {
-      id: "puc",
-      degree: "PUC (PCMB)",
-      institution: "Pre-University College",
-      location: "India",
-      startDate: "",
-      endDate: "",
-      score: "91%",
-      description: "Physics, Chemistry, Mathematics, Biology",
-    },
-    {
-      id: "high-school",
-      degree: "10th Standard",
-      institution: "Secondary School",
-      location: "India",
-      startDate: "",
-      endDate: "",
-      score: "90%",
-      description: "Secondary School Education",
-    },
-  ],
-  achievements: [
-    {
-      id: "ideathon-2025",
-      title: "Ideathon 2025",
-      type: "Participation",
-      organization: "Ideathon",
-      date: "2025",
-      description: "Team-based prototype participation.",
-    },
-  ],
-  certifications: [
-    {
-      id: "nptel-dl-foundations",
-      title: "NPTEL — Foundations of Deep Learning",
-      organization: "NPTEL",
-      date: "2026",
-      description: "Elite + Silver",
-    },
-    {
-      id: "nptel-ds-python",
-      title: "NPTEL — Data Science Using Python",
-      organization: "NPTEL",
-      date: "2025",
-      description: "NPTEL Certification",
-    },
-  ],
-  hobbies: ["Technology podcasts", "Cooking"],
 } satisfies PortfolioData;
 
 export const portfolio = portfolioConfig;

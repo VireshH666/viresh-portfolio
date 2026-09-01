@@ -3,16 +3,15 @@ import { Container } from "@/components/ui";
 import { portfolioConfig } from "@/config";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
   const { personalProfile, socialLinks } = portfolioConfig;
 
   return (
-    <footer className="w-full border-t-2 border-[var(--border)] bg-[var(--surface-primary)] py-8 text-xs text-[var(--text-muted)] font-mono">
+    <footer className="w-full border-t border-[var(--border)] bg-[var(--surface-primary)] py-8 text-xs text-[var(--text-muted)] font-mono">
       <Container size="default">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           {/* Copyright */}
           <div className="font-bold text-[var(--text-primary)]">
-            © {currentYear} {personalProfile.name}. All rights reserved.
+            © 2026 {personalProfile.name}. All rights reserved.
           </div>
 
           {/* Direct Social Links */}
@@ -22,7 +21,7 @@ export function Footer() {
                 href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1 rounded-lg border-2 border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-primary)] font-bold neo-tag hover:bg-[#0284c7] hover:text-white dark:hover:bg-[var(--secondary-sky)] dark:hover:text-[#090a10] transition-colors"
+                className="px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-primary)] font-bold hover:border-[var(--primary-accent)] hover:text-[var(--primary-accent)] transition-colors"
               >
                 GitHub
               </a>
@@ -32,7 +31,7 @@ export function Footer() {
                 href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1 rounded-lg border-2 border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-primary)] font-bold neo-tag hover:bg-[#e11d48] hover:text-white dark:hover:bg-[var(--accent-pink)] dark:hover:text-[#090a10] transition-colors"
+                className="px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-primary)] font-bold hover:border-blue-500 hover:text-blue-400 transition-colors"
               >
                 LinkedIn
               </a>
@@ -40,7 +39,7 @@ export function Footer() {
             {personalProfile.email && (
               <a
                 href={`mailto:${personalProfile.email}`}
-                className="px-3 py-1 rounded-lg border-2 border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-primary)] font-bold neo-tag hover:bg-[#7c3aed] hover:text-white dark:hover:bg-[var(--primary-lavender)] dark:hover:text-[#090a10] transition-colors"
+                className="px-3 py-1.5 rounded-xl border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--text-primary)] font-bold hover:border-indigo-500 hover:text-indigo-400 transition-colors"
               >
                 Email
               </a>

@@ -19,25 +19,25 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 const variantStyles: Record<string, string> = {
   default:
-    "bg-[var(--surface-secondary)] text-[var(--text-primary)] border-2 border-[var(--border)]",
+    "bg-[var(--surface-secondary)] text-[var(--text-primary)] border border-[var(--border)]",
   lavender:
-    "bg-[var(--primary-lavender-muted)] text-[var(--text-lavender)] border-2 border-[var(--border)]",
+    "bg-indigo-500/15 text-indigo-400 border border-indigo-500/30",
   sky:
-    "bg-[var(--secondary-sky-muted)] text-[var(--text-blue)] border-2 border-[var(--border)]",
+    "bg-cyan-500/15 text-cyan-400 border border-cyan-500/30",
   coral:
-    "bg-[var(--accent-pink-muted)] text-[var(--text-pink)] border-2 border-[var(--border)]",
+    "bg-rose-500/15 text-rose-400 border border-rose-500/30",
   mint:
-    "bg-[var(--accent-mint-muted)] text-[var(--text-mint)] border-2 border-[var(--border)]",
+    "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30",
   amber:
-    "bg-amber-500/20 text-amber-800 dark:text-amber-300 border-2 border-[var(--border)]",
+    "bg-amber-500/15 text-amber-400 border border-amber-500/30",
   accent:
-    "bg-[var(--primary-lavender-muted)] text-[var(--text-lavender)] border-2 border-[var(--border)]",
+    "bg-[var(--primary-accent-muted)] text-[var(--primary-accent)] border border-[var(--accent-border)]",
   outline:
-    "bg-transparent text-[var(--text-primary)] border-2 border-[var(--border)]",
+    "bg-transparent text-[var(--text-primary)] border border-[var(--border)]",
   muted:
     "bg-[var(--surface-primary)] text-[var(--text-secondary)] border border-[var(--border)]",
   success:
-    "bg-[var(--success-muted)] text-[var(--text-mint)] border-2 border-[var(--border)]",
+    "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30",
 };
 
 const sizeStyles: Record<string, string> = {
@@ -61,7 +61,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       <span
         ref={ref}
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-full font-mono tracking-tight transition-colors neo-tag select-none",
+          "inline-flex items-center gap-1.5 rounded-full font-mono tracking-tight transition-colors select-none",
           variantStyles[variant],
           sizeStyles[size],
           className
@@ -73,12 +73,12 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
             className={cn(
               "w-2 h-2 rounded-full shrink-0",
               variant === "success"
-                ? "bg-[var(--success)] animate-pulse"
+                ? "bg-emerald-400 animate-pulse"
                 : variant === "coral"
-                ? "bg-[var(--text-pink)]"
+                ? "bg-rose-400"
                 : variant === "sky"
-                ? "bg-[var(--text-blue)]"
-                : "bg-[var(--text-lavender)]"
+                ? "bg-cyan-400"
+                : "bg-indigo-400"
             )}
             aria-hidden="true"
           />

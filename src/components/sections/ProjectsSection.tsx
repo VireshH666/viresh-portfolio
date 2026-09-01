@@ -2,13 +2,7 @@
 
 import React, { useState } from "react";
 import type { Project } from "@/types/portfolio.types";
-import {
-  Container,
-  Section,
-  SectionHeading,
-  Badge,
-  buttonVariants,
-} from "@/components/ui";
+import { Container, Section, SectionHeading, buttonVariants } from "@/components/ui";
 import { portfolioConfig } from "@/config";
 import { ProjectCaseStudyModal } from "./ProjectCaseStudyModal";
 import { cn } from "@/lib/utils";
@@ -29,109 +23,121 @@ export function ProjectsSection() {
   };
 
   return (
-    <Section id="projects" spacing="default" className="border-t-2 border-[var(--border)] relative">
+    <Section id="projects" spacing="default" className="border-t border-[var(--border)] relative">
       <Container size="default">
         {/* Section Header */}
         <SectionHeading
-          eyebrow="02 // FEATURED PROJECTS"
-          title="Practical Engineering Projects"
-          description="Applied machine learning models, computer vision diagnostic systems, and intelligent discovery applications."
+          eyebrow="02 / PROJECTS"
+          title="Featured Projects"
+          description="Applied engineering projects in machine learning classification, computer vision diagnosis, and intelligent web discovery."
         />
 
-        {/* 3 Prominent Project Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch">
+        {/* 3 Prominent Project Cards Grid without technology lists */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {projects.map((project) => {
             const isCompleted = project.status === "completed";
             const isWhatsApp = project.id === "whatsapp-for-business";
             const isCrop = project.id === "crop-nutrient-deficiency-detection";
 
-            const badgeVariant = isWhatsApp ? "lavender" : isCrop ? "sky" : "coral";
-            const ctaVariant = isWhatsApp ? "lavender" : isCrop ? "sky" : "coral";
-
             return (
               <div
                 key={project.id}
-                className={cn(
-                  "p-6 sm:p-7 rounded-3xl bg-[var(--surface-primary)] border-2 border-[var(--border)] neo-card flex flex-col justify-between relative overflow-hidden",
-                  project.featured && "ring-2 ring-[var(--primary-lavender)]/60"
-                )}
+                className="p-7 sm:p-8 rounded-3xl bg-[var(--surface-primary)] border border-[var(--border)] card-engineering flex flex-col justify-between relative overflow-hidden group"
               >
                 <div>
-                  {/* Top Category Badge & Status */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                    <Badge variant={badgeVariant} size="sm">
-                      {isWhatsApp ? "Business Intelligence / AI" : isCrop ? "Computer Vision / ML" : "Signal Processing / Audio ML"}
-                    </Badge>
-                    <span className="text-[11px] font-mono font-bold text-[var(--text-muted)]">
+                  {/* Top Header: Project Number, Category & Status */}
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-mono font-black text-[var(--primary-accent)]">
+                        {project.projectNumber}
+                      </span>
+                      <span className="text-[11px] font-mono font-bold text-[var(--text-muted)] uppercase tracking-wider">
+                        {project.category}
+                      </span>
+                    </div>
+
+                    <span
+                      className={cn(
+                        "text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border",
+                        isCompleted
+                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
+                          : "bg-purple-500/10 text-purple-400 border-purple-500/30"
+                      )}
+                    >
                       {isCompleted ? "Completed" : "Ongoing Project"}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-extrabold text-[var(--text-primary)] tracking-tight mb-2.5">
+                  <h3 className="text-xl font-extrabold text-[var(--text-primary)] tracking-tight mb-3">
                     {project.title}
                   </h3>
 
                   {/* Short Description */}
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5 font-medium">
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6 font-medium">
                     {project.shortDescription}
                   </p>
 
-                  {/* Verified Metric Callout (for Crop project) */}
-                  {isCrop && project.results && project.results.length > 0 && (
-                    <div className="mb-5 p-2.5 rounded-xl bg-[var(--secondary-sky-muted)] border-2 border-[var(--border)] neo-tag text-xs font-mono font-bold text-[var(--text-primary)] flex items-center justify-between">
-                      <span>Verified Result:</span>
-                      <span className="text-[var(--text-blue)] font-black">{project.results[0]}</span>
-                    </div>
-                  )}
+                  {/* Custom Visual Workflow Graphic (No external images) */}
+                  <div className="w-full rounded-2xl bg-[var(--surface-secondary)] border border-[var(--border)] p-4 mb-6 relative overflow-hidden group-hover:border-[var(--primary-accent)]/40 transition-colors">
+                    {/* Background glow accent */}
+                    <div
+                      className={cn(
+                        "absolute -bottom-6 -right-6 w-24 h-24 rounded-full blur-xl pointer-events-none opacity-30 group-hover:opacity-60 transition-opacity",
+                        isWhatsApp && "bg-cyan-500",
+                        isCrop && "bg-emerald-500",
+                        !isWhatsApp && !isCrop && "bg-purple-500"
+                      )}
+                    />
 
-                  {/* Ongoing Badge (for Acoustic project) */}
-                  {!isCompleted && (
-                    <div className="mb-5 p-2.5 rounded-xl bg-[var(--accent-pink-muted)] border-2 border-[var(--border)] neo-tag text-xs font-mono font-bold text-[var(--text-primary)] flex items-center justify-between">
-                      <span>Status:</span>
-                      <span className="text-[var(--text-pink)] font-black">Ongoing Exploration</span>
+                    <div className="text-[10px] font-mono font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2.5">
+                      Visual Workflow
                     </div>
-                  )}
 
-                  {/* Key Workflow Capabilities */}
-                  {isWhatsApp && (
-                    <div className="mb-5 p-3 rounded-xl bg-[var(--surface-secondary)] border-2 border-[var(--border)] text-xs font-mono text-[var(--text-primary)] space-y-1.5 font-medium">
-                      <div className="text-[11px] uppercase font-extrabold text-[var(--text-lavender)]">Key Capabilities:</div>
-                      <div>• Public web discovery via SerpAPI</div>
-                      <div>• AI/LLM structured entity extraction</div>
-                      <div>• Deduplication & Geolocation</div>
-                      <div>• MongoDB & PhonePe API integration</div>
+                    {/* Step-by-Step Interactive Workflow */}
+                    <div className="flex flex-wrap items-center gap-1.5 font-mono text-xs text-[var(--text-primary)] font-extrabold">
+                      {project.workflowSteps.map((step, sIdx) => (
+                        <React.Fragment key={sIdx}>
+                          <span className="px-2 py-1 rounded-lg bg-[var(--surface-primary)] border border-[var(--border)] shadow-xs">
+                            {step}
+                          </span>
+                          {sIdx < project.workflowSteps.length - 1 && (
+                            <span
+                              className={cn(
+                                "text-xs font-black",
+                                isWhatsApp && "text-cyan-400",
+                                isCrop && "text-emerald-400",
+                                !isWhatsApp && !isCrop && "text-purple-400"
+                              )}
+                            >
+                              →
+                            </span>
+                          )}
+                        </React.Fragment>
+                      ))}
                     </div>
-                  )}
-                </div>
 
-                {/* Technologies Badges & Action Trigger */}
-                <div>
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.technologies.slice(0, 5).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-0.5 rounded-lg text-[11px] font-mono font-bold bg-[var(--surface-secondary)] text-[var(--text-primary)] border border-[var(--border)] neo-tag"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 5 && (
-                      <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold text-[var(--text-muted)] border border-[var(--border)]">
-                        +{project.technologies.length - 5}
-                      </span>
+                    {/* Verified Result Metric Callout (For Crop project only) */}
+                    {isCrop && project.results && project.results.length > 0 && (
+                      <div className="mt-3 pt-2.5 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs font-mono">
+                        <span className="text-[var(--text-muted)] font-medium">Result:</span>
+                        <span className="text-emerald-400 font-black">Up to 93% accuracy</span>
+                      </div>
                     )}
                   </div>
+                </div>
 
+                {/* Action Trigger Button */}
+                <div className="pt-2">
                   <button
                     type="button"
                     onClick={() => handleOpenModal(project)}
                     className={cn(
-                      buttonVariants({ variant: ctaVariant, size: "md" }),
-                      "w-full text-center font-mono text-xs font-bold"
+                      buttonVariants({ variant: "outline", size: "md" }),
+                      "w-full text-center font-mono text-xs font-bold border-[var(--border)] hover:bg-[var(--primary-accent)] hover:text-white hover:border-[var(--primary-accent)] transition-all cursor-pointer shadow-sm"
                     )}
                   >
-                    View Case Study ↗
+                    View Details ↗
                   </button>
                 </div>
               </div>
